@@ -675,6 +675,7 @@
     
     // before presentation of viewcontroller player is nil so acces only after
     if (configuration != nil) {
+        _playerViewController.player.contentKeyDataSource = self;
         [_playerViewController.player configurePlayerWith:configuration];
         
         if (_interfaceBehavior) {
@@ -701,6 +702,7 @@
     _playerView.player.adDelegate = self;
     _playerView.player.avDelegate = self;
     
+    _playerView.player.contentKeyDataSource = self;
     [_playerView.player configurePlayerWith:playerConfig];
 
     if (_pipEnabled) {
