@@ -76,7 +76,6 @@ RCT_EXPORT_VIEW_PROPERTY(onCastingFailed, RCTBubblingEventBlock);
 /* props */
 RCT_EXPORT_VIEW_PROPERTY(config, NSDictionary);
 RCT_EXPORT_VIEW_PROPERTY(controls, BOOL);
-RCT_EXPORT_VIEW_PROPERTY(isDrm, BOOL);
 
 RCT_REMAP_METHOD(state,
                  tag:(nonnull NSNumber*)reactTag
@@ -87,7 +86,7 @@ RCT_REMAP_METHOD(state,
         RNJWPlayerView *view = viewRegistry[reactTag];
         if (![view isKindOfClass:[RNJWPlayerView class]] || (view.playerViewController == nil && view.playerView == nil)) {
             RCTLogError(@"Invalid view returned from registry, expecting RNJWPlayerView, got: %@", view);
-
+            
             NSError *error = [[NSError alloc] init];
             reject(@"no_player", @"There is no playerViewController or playerView", error);
         } else {
@@ -132,7 +131,7 @@ RCT_EXPORT_METHOD(play:(nonnull NSNumber *)reactTag) {
             }
         }
     }];
-
+    
 }
 
 RCT_EXPORT_METHOD(stop:(nonnull NSNumber *)reactTag) {
@@ -149,7 +148,7 @@ RCT_EXPORT_METHOD(stop:(nonnull NSNumber *)reactTag) {
             }
         }
     }];
-
+    
 }
 
 RCT_REMAP_METHOD(position,
@@ -160,7 +159,7 @@ RCT_REMAP_METHOD(position,
         RNJWPlayerView *view = viewRegistry[reactTag];
         if (![view isKindOfClass:[RNJWPlayerView class]] || (view.playerViewController == nil && view.playerView == nil)) {
             RCTLogError(@"Invalid view returned from registry, expecting RNJWPlayerView, got: %@", view);
-
+            
             NSError *error = [[NSError alloc] init];
             reject(@"no_player", @"There is no playerView", error);
         } else {
@@ -194,7 +193,7 @@ RCT_EXPORT_METHOD(toggleSpeed:(nonnull NSNumber*)reactTag) {
             }
         }
     }];
-
+    
 }
 
 RCT_EXPORT_METHOD(setSpeed:(nonnull NSNumber*)reactTag: (double)speed) {
@@ -306,21 +305,21 @@ RCT_REMAP_METHOD(connectedDevice,
         RNJWPlayerView *view = viewRegistry[reactTag];
         if (![view isKindOfClass:[RNJWPlayerView class]] || view.playerView == nil) {
             RCTLogError(@"Invalid view returned from registry, expecting RNJWPlayerView, got: %@", view);
-
+            
             NSError *error = [[NSError alloc] init];
             reject(@"no_player", @"There is no player", error);
         } else {
             JWCastingDevice *device = view.connectedDevice;
-
+            
             if (device != nil) {
                 NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-
+                    
                 [dict setObject:device.name forKey:@"name"];
                 [dict setObject:device.identifier forKey:@"identifier"];
 
                 NSError *error;
                 NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error: &error];
-
+                
                 resolve([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
             } else {
                 NSError *error = [[NSError alloc] init];
@@ -339,7 +338,7 @@ RCT_REMAP_METHOD(availableDevices,
         RNJWPlayerView *view = viewRegistry[reactTag];
         if (![view isKindOfClass:[RNJWPlayerView class]] || view.playerView == nil) {
             RCTLogError(@"Invalid view returned from registry, expecting RNJWPlayerView, got: %@", view);
-
+            
             NSError *error = [[NSError alloc] init];
             reject(@"no_player", @"There is no player", error);
         } else {
@@ -348,7 +347,7 @@ RCT_REMAP_METHOD(availableDevices,
 
                 for (JWCastingDevice *device in view.availableDevices) {
                     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-
+                        
                     [dict setObject:device.name forKey:@"name"];
                     [dict setObject:device.identifier forKey:@"identifier"];
 
@@ -357,7 +356,7 @@ RCT_REMAP_METHOD(availableDevices,
 
                 NSError *error;
                 NSData *data = [NSJSONSerialization dataWithJSONObject:devicesInfo options:NSJSONWritingPrettyPrinted error: &error];
-
+                
                 resolve([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
             } else {
                 NSError *error = [[NSError alloc] init];
@@ -376,7 +375,7 @@ RCT_REMAP_METHOD(castState,
         RNJWPlayerView *view = viewRegistry[reactTag];
         if (![view isKindOfClass:[RNJWPlayerView class]] || view.playerView == nil) {
             RCTLogError(@"Invalid view returned from registry, expecting RNJWPlayerView, got: %@", view);
-
+            
             NSError *error = [[NSError alloc] init];
             reject(@"no_player", @"There is no player", error);
         } else {
@@ -404,7 +403,7 @@ RCT_REMAP_METHOD(getAudioTracks,
             } else if (view.playerViewController) {
                 audioTracks = [view.playerViewController.player audioTracks];
             }
-
+            
             if (audioTracks) {
                 NSMutableArray *results = [[NSMutableArray alloc] init];
                 for (int i = 0; i < audioTracks.count; i++) {
