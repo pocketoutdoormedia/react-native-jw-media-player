@@ -436,8 +436,8 @@
 
 - (void)appIdentifierForURL:(NSURL * _Nonnull)url completionHandler:(void (^ _Nonnull)(NSData * _Nullable))handler {
     RCTLogInfo(@"appIdentifierForUrl");
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSURL *certURL = [bundle URLForResource:_fairplayCertUrl withExtension:@"cer"];
+    NSBundle *bundle = (instancetype)bundleWithURL:(NSURL *)_fairplayCertUrl;;
+    NSURL *certURL = [bundle URLForResource:@"fps" withExtension:@"cer"];
     // NSURL *certURL = [NSURL URLWithString:_fairplayCertUrl];
     NSData *certData = [NSData dataWithContentsOfURL:certURL];
     handler(certData);
