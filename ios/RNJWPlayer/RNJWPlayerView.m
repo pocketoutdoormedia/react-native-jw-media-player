@@ -303,9 +303,10 @@
 //        [itemBuilder file:encodedUrl];
 //    }
     
-    JWPlayerItem *item = [itemBuilder buildAndReturnError:&error];
-    JWPlayerConfigurationBuilder *itemBuilder = [[JWPlayerConfigurationBuilder alloc] init];
-    JWPlayerConfiguration *config = [builder buildAndReturnError:&error];
+    [itemBuilder file:url];
+//    JWPlayerItem *item = [itemBuilder buildAndReturnError:&error];
+//    JWPlayerConfigurationBuilder *itemBuilder = [[JWPlayerConfigurationBuilder alloc] init];
+//    JWPlayerConfiguration *config = [itemBuilder buildAndReturnError:&error];
     
     id itemSources = item[@"sources"];
     if(itemSources != nil && (itemSources != (id)[NSNull null])) {
