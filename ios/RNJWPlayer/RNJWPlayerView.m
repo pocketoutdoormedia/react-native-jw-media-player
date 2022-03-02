@@ -442,11 +442,11 @@
 
     RCTLogInfo(@"%@", currentTime);
 
-    NSString *spcProcessURL = [NSString stringWithFormat:@"%@/%@?p1=%li", _processSpcUrl, _contentUUID, (NSInteger)currentTime];
+    // NSString *spcProcessURL = [NSString stringWithFormat:@"%@/%@?p1=%li", _processSpcUrl, _contentUUID, (NSInteger)currentTime];
 
     RCTLogInfo(@"%@", spcProcessURL);
 
-    NSMutableURLRequest *ckcRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:spcProcessURL]];
+    NSMutableURLRequest *ckcRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_processSpcUrl]];
     [ckcRequest setHTTPMethod:@"POST"];
     [ckcRequest setHTTPBody:spcData];
     [ckcRequest addValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
