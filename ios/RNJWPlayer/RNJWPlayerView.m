@@ -81,6 +81,7 @@
 
     _processSpcUrl = config[@"processSpcUrl"];
     _fairplayCertUrl = config[@"fairplayCertUrl"];
+    _contentUUID = config[@"uuid"];
 
     _backgroundAudioEnabled = config[@"backgroundAudioEnabled"];
     _pipEnabled = config[@"pipEnabled"];
@@ -428,7 +429,6 @@
 
 - (void)contentIdentifierForURL:(NSURL * _Nonnull)url completionHandler:(void (^ _Nonnull)(NSData * _Nullable))handler {
     RCTLogInfo(@"contentIdentifierForURL");
-    _contentUUID = url.absoluteString;
     NSString *contentUUID = _contentUUID;
     NSData *uuidData = [contentUUID dataUsingEncoding:NSUTF8StringEncoding];
     handler(uuidData);
