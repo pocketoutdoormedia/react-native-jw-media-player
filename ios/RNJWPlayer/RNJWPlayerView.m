@@ -296,18 +296,13 @@
     NSString* newFile = [item objectForKey:@"file"];
     NSURL* url = [NSURL URLWithString:newFile];
 
-//    if (url && url.scheme && url.host) {
-//        [itemBuilder file:url];
-//    } else {
-//        NSString* encodedString = [newFile stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-//        NSURL* encodedUrl = [NSURL URLWithString:encodedString];
-//        [itemBuilder file:encodedUrl];
-//    }
-    
-    [itemBuilder file:url];
-//    JWPlayerItem *item = [itemBuilder buildAndReturnError:&error];
-//    JWPlayerConfigurationBuilder *itemBuilder = [[JWPlayerConfigurationBuilder alloc] init];
-//    JWPlayerConfiguration *config = [itemBuilder buildAndReturnError:&error];
+    if (url && url.scheme && url.host) {
+        [itemBuilder file:url];
+    } else {
+        NSString* encodedString = [newFile stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        NSURL* encodedUrl = [NSURL URLWithString:encodedString];
+        [itemBuilder file:encodedUrl];
+    }
     
     id itemSources = item[@"sources"];
     if(itemSources != nil && (itemSources != (id)[NSNull null])) {
