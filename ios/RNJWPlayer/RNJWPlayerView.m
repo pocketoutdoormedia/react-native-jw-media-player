@@ -293,7 +293,9 @@
     JWPlayerItemBuilder* itemBuilder = [[JWPlayerItemBuilder alloc] init];
     JWError* error = nil;
 
-    [itemBuilder file:[NSURL URLWithString:file]];
+    NSString* newFile = [item objectForKey:@"file"];
+    NSURL* url = [NSURL URLWithString:newFile];
+    [itemBuilder file:url];
     
     id itemSources = item[@"sources"];
     if(itemSources != nil && (itemSources != (id)[NSNull null])) {
