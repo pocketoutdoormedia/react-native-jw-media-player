@@ -444,7 +444,7 @@
 
     // NSString *spcProcessURL = [NSString stringWithFormat:@"%@/%@?p1=%li", _processSpcUrl, _contentUUID, (NSInteger)currentTime];
 
-    RCTLogInfo(@"%@", spcProcessURL);
+    RCTLogInfo(@"%@", _processSpcUrl);
 
     NSMutableURLRequest *ckcRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_processSpcUrl]];
     [ckcRequest setHTTPMethod:@"POST"];
