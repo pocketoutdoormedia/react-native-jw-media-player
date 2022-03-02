@@ -295,14 +295,18 @@
     NSString* newFile = [item objectForKey:@"file"];
     NSURL* url = [NSURL URLWithString:newFile];
 
-    if (url && url.scheme && url.host) {
-        [itemBuilder file:url];
-    } else {
-        NSString* encodedString = [newFile stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-        NSURL* encodedUrl = [NSURL URLWithString:encodedString];
-        [itemBuilder file:encodedUrl];
-    }
-
+//    if (url && url.scheme && url.host) {
+//        [itemBuilder file:url];
+//    } else {
+//        NSString* encodedString = [newFile stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+//        NSURL* encodedUrl = [NSURL URLWithString:encodedString];
+//        [itemBuilder file:encodedUrl];
+//    }
+    
+    JWPlayerItem *item = [itemBuilder buildAndReturnError:&error];
+    JWPlayerConfigurationBuilder *itemBuilder = [[JWPlayerConfigurationBuilder alloc] init];
+    JWPlayerConfiguration *config = [builder buildAndReturnError:&error];
+    
     id itemSources = item[@"sources"];
     if(itemSources != nil && (itemSources != (id)[NSNull null])) {
         NSArray* itemSourcesArray = (NSArray*)itemSources;
@@ -730,6 +734,7 @@
     }
 
     _playerViewController.player.contentKeyDataSource = self;
+    [_playerViewController.player configurePlayerWith:config];
     _playerViewController.playerView.delegate = self;
     _playerViewController.player.delegate = self;
     _playerViewController.player.playbackStateDelegate = self;
