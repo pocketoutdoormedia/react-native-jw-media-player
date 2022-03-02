@@ -89,12 +89,13 @@
         [self initializeAudioSession];
     }
 
-    id viewOnly = config[@"viewOnly"];
-    if ((viewOnly != nil) && (viewOnly != (id)[NSNull null])) {
-        [self setupPlayerView:config :[self getPlayerConfiguration:config]];
-    } else {
-        [self setupPlayerViewController:config :[self getPlayerConfiguration:config]];
-    }
+//    id viewOnly = config[@"viewOnly"];
+//    if ((viewOnly != nil) && (viewOnly != (id)[NSNull null])) {
+//        [self setupPlayerView:config :[self getPlayerConfiguration:config]];
+//    } else {
+//        [self setupPlayerViewController:config :[self getPlayerConfiguration:config]];
+//    }
+    [self setupPlayerViewController:config :[self getPlayerConfiguration:config]];
 }
 
 -(void)setControls:(BOOL)controls
@@ -727,6 +728,7 @@
 
     // before presentation of viewcontroller player is nil so acces only after
     if (configuration != nil) {
+        _playerViewController.player.contentKeyDataSource = self;
         [_playerViewController.player configurePlayerWith:configuration];
 
         if (_interfaceBehavior) {
@@ -734,8 +736,6 @@
         }
     }
 
-    _playerViewController.player.contentKeyDataSource = self;
-    [_playerViewController.player configurePlayerWith:configuration];
     _playerViewController.playerView.delegate = self;
     _playerViewController.player.delegate = self;
     _playerViewController.player.playbackStateDelegate = self;

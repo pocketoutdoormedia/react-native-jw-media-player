@@ -123,6 +123,7 @@ declare module 'react-native-jw-media-player' {
     hideUIGroup?: UIGroups;
     processSpcUrl?: string;
     fairplayCertUrl?: string;
+    uuid?: string;
   }
   interface PropsType {
     config: Config;
