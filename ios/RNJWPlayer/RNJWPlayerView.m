@@ -293,16 +293,7 @@
     JWPlayerItemBuilder* itemBuilder = [[JWPlayerItemBuilder alloc] init];
     JWError* error = nil;
 
-    NSString* newFile = [item objectForKey:@"file"];
-    NSURL* url = [NSURL URLWithString:newFile];
-
-    if (url && url.scheme && url.host) {
-        [itemBuilder file:url];
-    } else {
-        NSString* encodedString = [newFile stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-        NSURL* encodedUrl = [NSURL URLWithString:encodedString];
-        [itemBuilder file:encodedUrl];
-    }
+    [itemBuilder file:[NSURL URLWithString:file]];
     
     id itemSources = item[@"sources"];
     if(itemSources != nil && (itemSources != (id)[NSNull null])) {
