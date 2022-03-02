@@ -735,7 +735,7 @@
     }
 
     _playerViewController.player.contentKeyDataSource = self;
-    [_playerViewController.player configurePlayerWith:config];
+    [_playerViewController.player configurePlayerWith:configuration];
     _playerViewController.playerView.delegate = self;
     _playerViewController.player.delegate = self;
     _playerViewController.player.playbackStateDelegate = self;
