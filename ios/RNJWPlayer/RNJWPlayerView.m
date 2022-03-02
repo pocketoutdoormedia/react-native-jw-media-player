@@ -435,9 +435,9 @@
 }
 
 - (void)appIdentifierForURL:(NSURL * _Nonnull)url completionHandler:(void (^ _Nonnull)(NSData * _Nullable))handler {
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSURL *certURL = [bundle URLForResource:_fairplayCertUrl withExtension:@"cer"];
-    NSData *certData = [NSData dataWithContentsOfURL:certURL];
+//    NSBundle *bundle = [NSBundle mainBundle];
+//    NSURL *certURL = [bundle URLForResource:_fairplayCertUrl withExtension:@"cer"];
+    NSData *certData = [NSData dataWithContentsOfURL:_fairplayCertUrl];
     handler(certData);
 }
 
